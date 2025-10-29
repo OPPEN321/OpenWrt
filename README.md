@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="https://doc.embedfire.com/openwrt/user_manal/zh/latest/_images/openwrtlogo.png" width="150" alt="OpenWrt Logo">
+  <img src="https://doc.embedfire.com/openwrt/user_manal/zh/latest/_images/openwrtlogo.png" width="768" alt="OpenWrt Logo">
 </p>
 
-<h1 align="center">🌐  OpenWrt — 智能在线编译平台</h1>
+<h1 align="center">🌐 OpenWrt — 多设备固件云编译</h1>
 
 <p align="center">
   <strong>一键构建高性能 OpenWrt 固件</strong><br>
