@@ -34,19 +34,62 @@
 
 </div>
 
-<!-- 横向目录 -->
-<a href="#readme"><img src="https://img.shields.io/badge/-📖目录-696969.svg"/></a>
-<a href="#项目说明-"><img src="https://img.shields.io/badge/-📝项目说明-32C955.svg"/></a>
-<a href="#固件特色-"><img src="https://img.shields.io/badge/-✨固件特色-ff9900.svg"/></a>
-<a href="#固件下载-"><img src="https://img.shields.io/badge/-📦固件下载-6f42c1.svg"/></a>
-<a href="#近期更新-"><img src="https://img.shields.io/badge/-🆕近期更新-32C955.svg"/></a>
-<a href="#插件预览-"><img src="https://img.shields.io/badge/-🔌插件预览-ff69b4.svg"/></a>
-<a href="#定制固件-"><img src="https://img.shields.io/badge/-⚙️定制固件-ff9900.svg"/></a>
-<a href="#特别提示-"><img src="https://img.shields.io/badge/-⚠️特别提示-ff0000.svg"/></a>
-<a href="#鸣谢-"><img src="https://img.shields.io/badge/-🙏鸣谢-32C955.svg"/></a>
+<!-- 横向目录导航栏 -->
+<div align="center" style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:20px;">
+
+  <a href="#readme" style="text-decoration:none;">
+    <img src="https://img.shields.io/badge/-📖目录-696969?style=for-the-badge&logo=book" 
+         style="border-radius:10px; transition: transform 0.3s;" 
+         onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
+
+  <a href="#项目说明-" style="text-decoration:none;">
+    <img src="https://img.shields.io/badge/-📝项目说明-32C955?style=for-the-badge&logo=markdown" 
+         style="border-radius:10px; transition: transform 0.3s;" 
+         onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
+
+  <a href="#固件特色-" style="text-decoration:none;">
+    <img src="https://img.shields.io/badge/-✨固件特色-ff9900?style=for-the-badge&logo=star" 
+         style="border-radius:10px; transition: transform 0.3s;" 
+         onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
+
+  <a href="#固件下载-" style="text-decoration:none;">
+    <img src="https://img.shields.io/badge/-📦固件下载-6f42c1?style=for-the-badge&logo=package" 
+         style="border-radius:10px; transition: transform 0.3s;" 
+         onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
+
+  <a href="#近期更新-" style="text-decoration:none;">
+    <img src="https://img.shields.io/badge/-🆕近期更新-32C955?style=for-the-badge&logo=update" 
+         style="border-radius:10px; transition: transform 0.3s;" 
+         onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
+
+  <a href="#插件预览-" style="text-decoration:none;">
+    <img src="https://img.shields.io/badge/-🔌插件预览-ff69b4?style=for-the-badge&logo=plug" 
+         style="border-radius:10px; transition: transform 0.3s;" 
+         onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
+
+  <a href="#定制固件-" style="text-decoration:none;">
+    <img src="https://img.shields.io/badge/-⚙️定制固件-ff9900?style=for-the-badge&logo=settings" 
+         style="border-radius:10px; transition: transform 0.3s;" 
+         onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
+
+  <a href="#特别提示-" style="text-decoration:none;">
+    <img src="https://img.shields.io/badge/-⚠️特别提示-ff0000?style=for-the-badge&logo=warning" 
+         style="border-radius:10px; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
+
+  <a href="#鸣谢-" style="text-decoration:none;">
+    <img src="https://img.shields.io/badge/-🙏鸣谢-32C955?style=for-the-badge&logo=heart" 
+         style="border-radius:10px; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
 
 </div>
-
 
 ---
 
