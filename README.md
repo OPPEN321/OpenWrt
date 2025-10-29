@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/OpenWrt_Logo.svg" width="150" alt="OpenWrt Logo">
+  <img src="https://doc.embedfire.com/openwrt/user_manal/zh/latest/_images/openwrtlogo.png" width="150" alt="OpenWrt Logo">
 </p>
 
 <h1 align="center">🌐  OpenWrt — 智能在线编译平台</h1>
