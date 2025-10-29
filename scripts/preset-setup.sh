@@ -83,9 +83,10 @@ sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/file
 sed -i 's/ci-llvm=true/ci-llvm=false/g' feeds/packages/lang/rust/Makefile
 
 # 修改版本为编译日期
-date_version=$(date +"%y.%m.%d")
-orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
-sed -i "s/${orig_version}/R${date_version} by OPPEN321/g" package/lean/default-settings/files/zzz-default-settings
+date_version=$(date +"R%y.%m.%d")
+sed -i "s/DISTRIB_REVISION=.*/DISTRIB_REVISION='$date_version'/" package/lean/default-settings/files/zzz-default-settings
+sed -i "s/DISTRIB_DESCRIPTION=.*/DISTRIB_DESCRIPTION='ZeroWrt'/" package/lean/default-settings/files/zzz-default-settings
+sed -i "s|echo 'OPENWRT_RELEASE=\".*\"' >> /usr/lib/os-release|echo 'OPENWRT_RELEASE=\"ZeroWrt 标准版 @ $date_version BY OPPEN321\"' >> /usr/lib/os-release|" package/lean/default-settings/files/zzz-default-settings
 
 # 取消主题默认设置
 find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
