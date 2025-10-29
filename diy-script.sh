@@ -37,6 +37,9 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 # OpenWrt 默认的启动横幅文件
 cp -f $GITHUB_WORKSPACE/scripts/banner package/base-files/files/etc/banner
 
+# 更新 feeds.conf.default 文件
+cp -f $GITHUB_WORKSPACE/scripts/feeds.conf.default feeds.conf.default
+
 # 移除要替换的包
 rm -rf feeds/packages/net/{mosdns,msd_lite,open-app-filter}
 rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-netgear}
