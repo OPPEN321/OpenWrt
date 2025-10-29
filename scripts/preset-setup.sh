@@ -10,10 +10,10 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
 # OpenWrt 默认的启动横幅文件
-cp -f $GITHUB_WORKSPACE/scripts/banner package/base-files/files/etc/banner
+curl -s http://127.0.0.1:8080/scripts/banner > package/base-files/files/etc/banner
 
 # 更新 feeds.conf.default 文件
-cp -f $GITHUB_WORKSPACE/scripts/feeds.conf.default feeds.conf.default
+curl -s http://127.0.0.1:8080/scripts/feeds.conf.default > feeds.conf.default
 
 # 移除要替换的包
 rm -rf feeds/packages/net/{mosdns,msd_lite,open-app-filter}
@@ -59,7 +59,7 @@ git clone --depth=1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreed
 git_sparse_clone main https://github.com/haiibo/packages luci-theme-atmaterial luci-theme-opentomcat luci-theme-netgear
 
 # 更改 Argon 主题背景
-cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+curl -s http://127.0.0.1:8080/images/bg1.jpg > package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
 # msd_lite
 git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
