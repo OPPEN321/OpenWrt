@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/oppen321/OpenWrt/main/docs/logo.png" width="150" alt="OpenWrt Logo">
 </p>
 
-<h1 align="center">🌐 OPPEN321 / OpenWrt — 智能在线编译平台</h1>
+<h1 align="center">🌐  OpenWrt — 智能在线编译平台</h1>
 
 <p align="center">
   <strong>一键构建高性能 OpenWrt 固件</strong><br>
@@ -12,7 +12,7 @@
 <p align="center">
   <a href="http://10.0.0.1"><img src="https://img.shields.io/badge/后台-10.0.0.1-blue.svg" alt="后台"></a>
   <a href="#"><img src="https://img.shields.io/badge/密码-password-red.svg" alt="密码"></a>
-  <a href="https://github.com/oppen321/OpenWrt/actions/workflows/build.yml"><img src="https://github.com/oppen321/OpenWrt/workflows/Build/badge.svg" alt="Build Status"></a>
+  <a href="https://github.com/OPPEN321/OpenWrt/actions/workflows/build.yml"><img src="https://github.com/oppen321/OpenWrt/workflows/Build/badge.svg" alt="Build Status"></a>
   <a href="#"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
 </p>
 
