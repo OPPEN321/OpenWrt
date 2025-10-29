@@ -4,25 +4,20 @@
 
 <h1 style="font-size:2.5em; color:#32C955;">OpenWrt — 多设备固件云编译</h1>
 
-<p>
 <img src="https://img.shields.io/github/downloads/OPPEN321/OpenWrt/total.svg?style=for-the-badge&color=32C955"/>
 <img src="https://img.shields.io/github/stars/OPPEN321/OpenWrt.svg?style=for-the-badge&color=ff9900"/>
 <img src="https://img.shields.io/github/forks/OPPEN321/OpenWrt.svg?style=for-the-badge&color=ff69b4"/>
 <img src="https://img.shields.io/github/license/OPPEN321/OpenWrt.svg?style=for-the-badge&color=6f42c1"/>
-</p>
 
-<p>
-[![](https://img.shields.io/badge/-📖目录-696969.svg)](#readme) 
-[![](https://img.shields.io/badge/-📝项目说明-32C955.svg)](#项目说明-) 
-[![](https://img.shields.io/badge/-✨固件特色-ff9900.svg)](#固件特色-) 
-[![](https://img.shields.io/badge/-📦固件下载-6f42c1.svg)](#固件下载-) 
-[![](https://img.shields.io/badge/-🆕近期更新-32C955.svg)](#近期更新-) 
-[![](https://img.shields.io/badge/-🔌插件预览-ff69b4.svg)](#插件预览-) 
-[![](https://img.shields.io/badge/-⚙️定制固件-ff9900.svg)](#定制固件-) 
-[![](https://img.shields.io/badge/-⚠️特别提示-ff0000.svg)](#特别提示-) 
+[![](https://img.shields.io/badge/-📖目录-696969.svg)](#readme)  
+[![](https://img.shields.io/badge/-📝项目说明-32C955.svg)](#项目说明-)  
+[![](https://img.shields.io/badge/-✨固件特色-ff9900.svg)](#固件特色-)  
+[![](https://img.shields.io/badge/-📦固件下载-6f42c1.svg)](#固件下载-)  
+[![](https://img.shields.io/badge/-🆕近期更新-32C955.svg)](#近期更新-)  
+[![](https://img.shields.io/badge/-🔌插件预览-ff69b4.svg)](#插件预览-)  
+[![](https://img.shields.io/badge/-⚙️定制固件-ff9900.svg)](#定制固件-)  
+[![](https://img.shields.io/badge/-⚠️特别提示-ff0000.svg)](#特别提示-)  
 [![](https://img.shields.io/badge/-🙏鸣谢-32C955.svg)](#鸣谢-)
-</p>
-</div>
 
 ---
 
