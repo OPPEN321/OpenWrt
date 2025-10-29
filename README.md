@@ -1,18 +1,38 @@
 <div align="center">
 
+<!-- LOGO -->
 <img width="720" src="https://doc.embedfire.com/openwrt/user_manal/zh/latest/_images/openwrtlogo.png"/>
 
-<h1 style="font-size:2.5em; color:#32C955;">OpenWrt — 多设备固件云编译</h1>
-
-<div align="center">
+<h1 style="font-size:2.5em; color:#32C955; margin-top: 10px;">OpenWrt — 多设备固件云编译</h1>
 
 <!-- 仓库信息徽章 -->
-<img src="https://img.shields.io/github/downloads/OPPEN321/OpenWrt/total.svg?style=for-the-badge&color=32C955"/>
-<img src="https://img.shields.io/github/stars/OPPEN321/OpenWrt.svg?style=for-the-badge&color=ff9900"/>
-<img src="https://img.shields.io/github/forks/OPPEN321/OpenWrt.svg?style=for-the-badge&color=ff69b4"/>
-<img src="https://img.shields.io/github/license/OPPEN321/OpenWrt.svg?style=for-the-badge&color=6f42c1"/>
+<div style="display:flex; justify-content:center; flex-wrap:wrap; gap:15px; margin-top:15px;">
 
-<br><br>
+  <a href="https://github.com/OPPEN321/OpenWrt" target="_blank" style="text-decoration:none;">
+    <img src="https://img.shields.io/github/downloads/OPPEN321/OpenWrt/total.svg?style=for-the-badge&color=32C955"
+         style="border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.2); transition: transform 0.3s;"
+         onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
+
+  <a href="https://github.com/OPPEN321/OpenWrt/stargazers" target="_blank" style="text-decoration:none;">
+    <img src="https://img.shields.io/github/stars/OPPEN321/OpenWrt.svg?style=for-the-badge&color=ff9900"
+         style="border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.2); transition: transform 0.3s;"
+         onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
+
+  <a href="https://github.com/OPPEN321/OpenWrt/network/members" target="_blank" style="text-decoration:none;">
+    <img src="https://img.shields.io/github/forks/OPPEN321/OpenWrt.svg?style=for-the-badge&color=ff69b4"
+         style="border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.2); transition: transform 0.3s;"
+         onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
+
+  <a href="https://github.com/OPPEN321/OpenWrt/blob/master/LICENSE" target="_blank" style="text-decoration:none;">
+    <img src="https://img.shields.io/github/license/OPPEN321/OpenWrt.svg?style=for-the-badge&color=6f42c1"
+         style="border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.2); transition: transform 0.3s;"
+         onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  </a>
+
+</div>
 
 <!-- 横向目录 -->
 <a href="#readme"><img src="https://img.shields.io/badge/-📖目录-696969.svg"/></a>
