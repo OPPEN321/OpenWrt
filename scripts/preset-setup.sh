@@ -15,9 +15,6 @@ sed -i 's/6.12/6.6/' target/linux/rockchip/Makefile
 # OpenWrt 默认的启动横幅文件
 curl -s http://127.0.0.1:8080/scripts/banner > package/base-files/files/etc/banner
 
-# 更新 feeds.conf.default 文件
-curl -s http://127.0.0.1:8080/scripts/feeds.conf.default > feeds.conf.default
-
 # 移除要替换的包
 rm -rf feeds/packages/net/{mosdns,msd_lite,open-app-filter,libxcrypt}
 rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-netgear}
