@@ -100,10 +100,9 @@ jobs:
     - name: Load Custom Configuration
       working-directory: /builder
       run: |
-        [ -e files ] && mv files $OPENWRT_PATH/files
-        curl -s http://127.0.0.1:8080/configs/rockchip.config > $OPENWRT_PATH/.config
-        curl -s http://127.0.0.1:8080/configs/extra.config >> $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
+        curl -s http://127.0.0.1:8080/configs/rockchip.config > .config
+        curl -s http://127.0.0.1:8080/configs/extra.config >> .config
         bash <(curl -sS http://127.0.0.1:8080/build.sh)
 
     - name: Download DL Package
