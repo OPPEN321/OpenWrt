@@ -9,6 +9,9 @@ sed -i 's/LEDE/ZeroWrt/' package/base-files/files/bin/config_generate
 # 更改默认 Shell 为 zsh
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
+# 修改内核版本
+sed -i 's/6.12/6.6/' target/linux/rockchip/Makefile
+
 # OpenWrt 默认的启动横幅文件
 curl -s http://127.0.0.1:8080/scripts/banner > package/base-files/files/etc/banner
 
