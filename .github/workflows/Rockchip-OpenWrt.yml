@@ -38,6 +38,16 @@ jobs:
         echo -e "$(sudo lshw -short -C memory | grep GiB)\n"
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
+
+    - name: Install Caddy Server
+      run: |
+        sudo curl -sL -o /usr/bin/caddy https://github.com/OPPEN321/OpenWrt/releases/download/caddy/caddy
+        sudo chmod 755 /usr/bin/caddy
+        echo ":8080 {" > caddyfile
+        echo "    root * $(pwd)/OpenWrt" >> caddyfile
+        echo "    file_server browse" >> caddyfile
+        echo "}" >> caddyfile
+        sudo /usr/bin/caddy start --config caddyfile --adapter caddyfile
         
     - name: Initialization environment
       env:
