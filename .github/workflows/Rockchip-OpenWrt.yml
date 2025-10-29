@@ -26,6 +26,12 @@ jobs:
         shell: bash
 
     steps:
+    - name: Checkout
+      continue-on-error: true
+      uses: actions/checkout@main
+      with:
+        path: OpenWrt
+
     - name: Check Server Performance
       run: |
         echo "警告⚠"
@@ -51,53 +57,19 @@ jobs:
         echo "}" >> caddyfile
         sudo /usr/bin/caddy start --config caddyfile --adapter caddyfile
         
-    - name: Initialization environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        docker rmi -f $(docker images -q) 2>/dev/null || true
-        [[ -n "${AGENT_TOOLSDIRECTORY}" ]] && sudo rm -rf "${AGENT_TOOLSDIRECTORY}"
-        sudo rm -rf /usr/share/dotnet /usr/local/lib/android 2>/dev/null
-        sudo swapoff -a
-        sudo rm -f /swapfile /mnt/swapfile
-        sudo -E apt-get -y update
-        sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
-        sudo -E apt-get -y install $(curl -fsSL https://ophub.org/ubuntu2404-make-openwrt-depends)
-        sudo -E systemctl daemon-reload
-        #sudo -E apt-get -y full-upgrade
-        sudo -E apt-get -y autoremove --purge
-        sudo -E apt-get clean
-        sudo sed -i '/NVM_DIR/d;/skel/d' /root/{.bashrc,.profile}
-        sudo rm -rf ~/{.cargo,.dotnet,.rustup}
-        sudo -E timedatectl set-timezone "${TZ:-Etc/UTC}"
-        sudo -E ntpdate ntp.ubuntu.com 0.pool.ntp.org || true
-        sudo -E timedatectl set-ntp true
-        date -u
-        timedatectl status || true
-        echo "status=success" >> ${GITHUB_OUTPUT}
+    - name: Free disk space
+      uses: sbwml/actions@free-disk
+      with:
+        build-mount-path: /builder
 
-    - name: Create simulated physical disk
-      run: |
-        mnt_size=$(expr $(df -h /mnt | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 1)
-        root_size=$(expr $(df -h / | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 4)
-        sudo truncate -s "${mnt_size}"G /mnt/mnt.img
-        sudo truncate -s "${root_size}"G /root.img
-        sudo losetup /dev/loop6 /mnt/mnt.img
-        sudo losetup /dev/loop7 /root.img
-        sudo pvcreate /dev/loop6
-        sudo pvcreate /dev/loop7
-        sudo vgcreate github /dev/loop6 /dev/loop7
-        sudo lvcreate -n runner -l 100%FREE github
-        sudo mkfs.xfs /dev/github/runner
-        sudo mkdir -p /builder
-        sudo mount /dev/github/runner /builder
-        sudo chown -R runner.runner /builder
-        df -Th
+    - name: Build System Setup
+      uses: sbwml/actions@openwrt-build-setup
 
-    - name: Checkout
-      uses: actions/checkout@v4
+    - name: Install LLVM
+      uses: sbwml/actions@install-llvm
 
     - name: Clone Source Code
+      working-directory: /builder
       run: |
         df -hT $GITHUB_WORKSPACE
         git clone $REPO_URL -b $REPO_BRANCH openwrt
@@ -110,7 +82,7 @@ jobs:
         COMMIT_MESSAGE=$(git show -s --date=short --format="内容: %s")
         echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
         COMMIT_HASH=$(git show -s --date=short --format="hash: %H")
-        echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV        
+        echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV      
 
     - name: Cache Toolchain
       if: env.CACHE_TOOLCHAIN == 'true'
@@ -121,12 +93,14 @@ jobs:
         prefix: ${{ env.OPENWRT_PATH }}
 
     - name: Install Feeds
+      working-directory: /builder    
       run: |
         cd $OPENWRT_PATH
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
     - name: Load Custom Configuration
+      working-directory: /builder
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
@@ -135,6 +109,7 @@ jobs:
         bash <(curl -sS http://127.0.0.1:8080/build.sh)
 
     - name: Download DL Package
+      working-directory: /builder
       run: |
         cd $OPENWRT_PATH
         make defconfig
@@ -144,6 +119,7 @@ jobs:
 
     - name: Compile Firmware
       id: compile
+      working-directory: /builder
       run: |
         cd $OPENWRT_PATH
         mkdir -p files/etc/uci-defaults
@@ -167,6 +143,7 @@ jobs:
 
     - name: Organize Files
       if: steps.compile.outputs.status == 'success'
+      working-directory: /builder      
       run: |
         cd $OPENWRT_PATH/bin/targets/*/*
         cat sha256sums
