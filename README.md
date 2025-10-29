@@ -1,103 +1,126 @@
-<p align="center">
-  <img src="https://doc.embedfire.com/openwrt/user_manal/zh/latest/_images/openwrtlogo.png" width="768" alt="OpenWrt Logo">
+<div align="center">
+
+<img width="720" src="https://doc.embedfire.com/openwrt/user_manal/zh/latest/_images/openwrtlogo.png"/>
+
+<h1 style="font-size:2.5em; color:#32C955;">OpenWrt — 多设备固件云编译</h1>
+
+<p>
+<img src="https://img.shields.io/github/downloads/OPPEN321/OpenWrt/total.svg?style=for-the-badge&color=32C955"/>
+<img src="https://img.shields.io/github/stars/OPPEN321/OpenWrt.svg?style=for-the-badge&color=ff9900"/>
+<img src="https://img.shields.io/github/forks/OPPEN321/OpenWrt.svg?style=for-the-badge&color=ff69b4"/>
+<img src="https://img.shields.io/github/license/OPPEN321/OpenWrt.svg?style=for-the-badge&color=6f42c1"/>
 </p>
 
-<h1 align="center">🌐 OpenWrt — 多设备固件云编译</h1>
-
-<p align="center">
-  <strong>一键构建高性能 OpenWrt 固件</strong><br>
-  支持 <b>Rockchip</b> 与 <b>x86_64</b> 平台，基于 <b>LEDE</b> 源码，自动化 & 可视化后台。
+<p>
+[![](https://img.shields.io/badge/-📖目录-696969.svg)](#readme) 
+[![](https://img.shields.io/badge/-📝项目说明-32C955.svg)](#项目说明-) 
+[![](https://img.shields.io/badge/-✨固件特色-ff9900.svg)](#固件特色-) 
+[![](https://img.shields.io/badge/-📦固件下载-6f42c1.svg)](#固件下载-) 
+[![](https://img.shields.io/badge/-🆕近期更新-32C955.svg)](#近期更新-) 
+[![](https://img.shields.io/badge/-🔌插件预览-ff69b4.svg)](#插件预览-) 
+[![](https://img.shields.io/badge/-⚙️定制固件-ff9900.svg)](#定制固件-) 
+[![](https://img.shields.io/badge/-⚠️特别提示-ff0000.svg)](#特别提示-) 
+[![](https://img.shields.io/badge/-🙏鸣谢-32C955.svg)](#鸣谢-)
 </p>
-
-<p align="center">
-  <a href="http://10.0.0.1"><img src="https://img.shields.io/badge/后台-10.0.0.1-blue.svg" alt="后台"></a>
-  <a href="#"><img src="https://img.shields.io/badge/密码-password-red.svg" alt="密码"></a>
-  <a href="https://github.com/OPPEN321/OpenWrt/actions/workflows/build.yml"><img src="https://github.com/oppen321/OpenWrt/workflows/Build/badge.svg" alt="Build Status"></a>
-  <a href="#"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
-</p>
+</div>
 
 ---
 
-## ✨ 项目简介
+## 📝 项目说明
 
-**OPPEN321 / OpenWrt** 是一个 **高端在线云编译平台**，利用 **GitHub Actions** 自动化构建 OpenWrt 固件，兼容 **Rockchip** 与 **x86_64** 平台。  
-无需本地环境，上传配置即可一键生成定制固件，支持自动集成驱动、LuCI 应用、主题美化与自定义包。
+<div style="background: #f7f7f7; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+- **固件构成**：
+  [![LEDE](https://img.shields.io/badge/LEDE-源码-blueviolet.svg?style=flat)](https://github.com/coolsnowwolf/lede)
+  [![OPPEN321](https://img.shields.io/badge/Build-OPPEN321-32C955.svg?style=flat)](https://github.com/OPPEN321/OpenWrt)
 
-> 💻 后台地址：<b>http://10.0.0.1</b>  
-> 🔑 默认密码：<b>password</b>
-
----
-
-## ⚡ 核心特性
-
-<table>
-<tr>
-<td align="center">🚀<br><b>自动化构建</b></td>
-<td align="center">🧩<br><b>多平台支持</b></td>
-<td align="center">🧱<br><b>自定义配置</b></td>
-<td align="center">🪶<br><b>驱动齐全</b></td>
-<td align="center">💎<br><b>主题美化</b></td>
-<td align="center">⚡<br><b>可视化管理</b></td>
-</tr>
-<tr>
-<td>GitHub Actions 云端一键编译，无需本地环境</td>
-<td>Rockchip / x86_64 双平台覆盖，兼容主流路由器和服务器</td>
-<td>上传 .config 或 files/ 注入系统文件，完全自定义固件</td>
-<td>内置常用网络驱动及 LuCI 插件</td>
-<td>默认启用 Argon 等精美主题，可替换</td>
-<td>Web 后台实时查看日志与状态</td>
-</tr>
-</table>
+- **编译方式**：使用 GitHub Actions 云端自动拉取源码编译
+- **默认登录**：管理地址 `10.0.0.1` 用户 `root` 密码 `password`
+- **适配平台**：Rockchip 平台、X86_64 软路由
+- **Rockchip 固件版本**：
+  - 精简版：轻量化，主要功能覆盖基础网络
+  - 增强版：集成更多插件，支持 Docker、在线更新等
+- **插件管理**：集成所有 ipk 插件，可在 [Releases](https://github.com/OPPEN321/OpenWrt/releases) 下载
+- **注意事项**：首次使用请全新安装，避免升级失败
+</div>
 
 ---
 
-## 🛠 使用指南
+## ✨ 固件特色
 
-1️⃣ 访问后台: [http://10.0.0.1](http://10.0.0.1)，输入密码 <b>password</b>  
-2️⃣ 上传 `.config` 或 `files/` 文件（可选，自定义固件）  
-3️⃣ 选择目标平台：Rockchip / x86_64  
-4️⃣ 点击 **构建**，触发 GitHub Actions 云端编译  
-5️⃣ 实时查看日志，完成后直接下载固件  
-
----
-
-## 🌐 高级定制
-
-- 🧰 **第三方包源**：在 `feeds.conf.default` 添加自定义仓库  
-- 🧩 **自动补丁**：`scripts/patch.sh` 可自动应用自定义补丁  
-- 🌀 **缓存加速**：区分 Rockchip / x86_64 编译缓存，提高重复构建速度  
-- 🧬 **后处理脚本**：可在 `scripts/` 内添加自动打包、美化逻辑  
-
----
-
-## ❓ 常见问题
-
-**Q：可以完全自定义固件吗？**  
-✅ 通过上传 `.config` 与 `files/` 内容即可。  
-
-**Q：如何添加额外软件包？**  
-✅ 将包放入 `package/` 或添加 IPK 仓库地址到 feeds 文件中。  
-
-**Q：如何查看编译日志？**  
-✅ 后台提供实时日志，可追踪错误或进度。  
+<div style="display:flex; flex-wrap:wrap; gap:15px;">
+<div style="flex:1; min-width:250px; background:#ffffff; border-radius:10px; padding:15px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+1️⃣ 云端 GitHub Actions 定时自动编译  
+2️⃣ 集成常用有线、无线及 3G / 4G 网卡驱动  
+3️⃣ 中文版 netdata 实时监控  
+4️⃣ iStore 应用商店，自由安装插件  
+</div>
+<div style="flex:1; min-width:250px; background:#ffffff; border-radius:10px; padding:15px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+5️⃣ 内置 Docker 服务，可部署容器  
+6️⃣ 应用过滤功能，管理游戏、视频、聊天、下载  
+7️⃣ 在线用户监控，实时查看 IP 与速率  
+8️⃣ 自动更新固件及内核（增强版）  
+</div>
+</div>
 
 ---
 
-## 🤝 贡献指南
+## 📦 固件下载
 
-欢迎 Issue / PR，提交前请确保：  
-- 变更说明清晰（CHANGELOG / PR 描述）  
-- 添加包或驱动时注明来源与许可证  
+点击下表中的链接跳转到固件下载页面：
 
----
-
-## 📜 许可证
-
-本项目默认使用 **MIT License**。自由使用、修改与发布，无额外限制。  
+| 平台+设备 | 编译状态 | 配置文件 | 下载链接 |
+| :------: | :------: | :------: | :------: |
+| X86_64 | [![状态](https://github.com/OPPEN321/OpenWrt/actions/workflows/X86_64-OpenWrt.yml/badge.svg)]() | [![配置](https://img.shields.io/badge/编译-配置-orange.svg)]() | [![下载](https://img.shields.io/badge/下载-链接-blueviolet.svg)]() |
+| Rockchip | [![状态](https://github.com/OPPEN321/OpenWrt/actions/workflows/Rockchip-OpenWrt.yml/badge.svg)]() | [![配置](https://img.shields.io/badge/编译-配置-orange.svg)]() | [![下载](https://img.shields.io/badge/下载-链接-blueviolet.svg)]() |
 
 ---
 
-<p align="center">
-⭐ 如果本项目对你有帮助，请点亮 <b>Star</b> 支持！
-</p>
+## 🆕 近期更新
 
+🤣 持续优化中……
+
+---
+
+## 🔌 插件预览
+
+<details>
+<summary><b>Rockchip 精简/增强版插件预览</b></summary>
+<br/>
+<img width="100%" src="https://cdn.jsdelivr.net/gh/haiibo/OpenWrt/images/mini.png"/>
+</details>
+
+<details>
+<summary><b>X86_64 软路由插件预览</b></summary>
+<br/>
+<img width="100%" src="https://cdn.jsdelivr.net/gh/haiibo/OpenWrt/images/plus.png"/>
+</details>
+
+---
+
+## ⚙️ 定制固件
+
+1. 登录 GitHub 并 Fork 本项目  
+2. 修改 `configs/` 对应配置或上传自定义 `.config`  
+3. 调整插件、默认 IP、密码等，可在 `diy-script.sh` 内修改  
+4. 编辑或创建对应 workflow 文件，运行 Actions 开始编译  
+5. 编译时间约 3-5 小时，完成后在 [Releases](https://github.com/OPPEN321/OpenWrt/releases) 下载固件  
+
+---
+
+## ⚠️ 特别提示
+
+- 不提供技术支持，不保证完全无 BUG  
+- 使用固件风险自负，禁止商业用途  
+- 请遵守国家网络法律法规  
+
+---
+
+## 🙏 鸣谢
+
+| [LEDE](https://github.com/coolsnowwolf/lede) | [P3TERX](https://github.com/P3TERX) | [Flippy](https://github.com/unifreq/openwrt_packit) | [Haiibo](https://github.com/haiibo/OpenWrt) |
+| :-------------: | :-------------: | :-------------: | :-------------: |
+| <img width="100" src="https://avatars.githubusercontent.com/u/31687149"/> | <img width="100" src="https://avatars.githubusercontent.com/u/25927179"/> | <img width="100" src="https://avatars.githubusercontent.com/u/39355261"/> | <img width="100" src="https://avatars.githubusercontent.com/u/68696949"/> |
+
+<a href="#readme">
+<img src="https://img.shields.io/badge/-返回顶部-FFFFFF.svg" title="返回顶部" align="right"/>
+</a>
