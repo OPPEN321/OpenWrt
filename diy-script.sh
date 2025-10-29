@@ -38,7 +38,7 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 cp -f $GITHUB_WORKSPACE/scripts/banner package/base-files/files/etc/banner
 
 # 移除要替换的包
-rm -rf feeds/packages/net/{mosdns,msd_lite}
+rm -rf feeds/packages/net/{mosdns,msd_lite,open-app-filter}
 rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-netgear}
 rm -rf feeds/luci/applications/luci-app-mosdns,luci-app-netdata}
 rm -rf feeds/packages/lang/golang
