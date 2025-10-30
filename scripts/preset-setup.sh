@@ -27,7 +27,7 @@ rm -rf feeds/luci/applications/luci-app-mosdns,luci-app-netdata}
 rm -rf feeds/packages/lang/golang
 rm -rf package/libs/mbedtls
 
-# 替换 Mbedtls 版本为 2.28.5
+# Git 参数设置
 git_clone_path() {
     local commit_hash=$1
     local repo=$2
@@ -47,7 +47,7 @@ git_clone_path() {
     done
 }
 
-# 调用示例，克隆 4bb635d 提交的 mbedtls
+# 克隆 4bb635d 提交的 mbedtls
 git_clone_path 4bb635d https://github.com/coolsnowwolf/lede package/libs/mbedtls
 
 # Git稀疏克隆，只克隆指定目录到本地
