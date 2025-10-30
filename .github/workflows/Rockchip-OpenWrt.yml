@@ -103,7 +103,6 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         curl -s http://127.0.0.1:8080/configs/rockchip.config > .config
-        curl -s http://127.0.0.1:8080/configs/extra.config >> .config
         bash <(curl -sS http://127.0.0.1:8080/build.sh)
 
     - name: Download DL Package
