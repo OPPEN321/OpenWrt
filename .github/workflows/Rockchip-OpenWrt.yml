@@ -82,6 +82,19 @@ jobs:
         COMMIT_HASH=$(git show -s --date=short --format="hash: %H")
         echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV      
 
+    - name: Generate Variables
+      run: |
+        cd $OPENWRT_PATH
+        curl -s http://127.0.0.1:8080/scripts/feeds.conf.default > feeds.conf.default
+        curl -s http://127.0.0.1:8080/configs/rockchip.config > .config
+        make defconfig > /dev/null 2>&1
+        SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
+        echo "SOURCE_REPO=$SOURCE_REPO" >> $GITHUB_ENV
+        DEVICE_TARGET=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
+        echo "DEVICE_TARGET=$DEVICE_TARGET" >> $GITHUB_ENV
+        DEVICE_SUBTARGET=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
+        echo "DEVICE_SUBTARGET=$DEVICE_SUBTARGET" >> $GITHUB_ENV
+        
     - name: Cache Toolchain
       if: env.CACHE_TOOLCHAIN == 'true'
       uses: HiGarfield/cachewrtbuild@main
@@ -94,7 +107,6 @@ jobs:
       working-directory: /builder    
       run: |
         cd $OPENWRT_PATH
-        curl -s http://127.0.0.1:8080/scripts/feeds.conf.default > feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
@@ -102,7 +114,6 @@ jobs:
       working-directory: /builder
       run: |
         cd $OPENWRT_PATH
-        curl -s http://127.0.0.1:8080/configs/rockchip.config > .config
         bash <(curl -sS http://127.0.0.1:8080/build.sh)
 
     - name: Download DL Package
