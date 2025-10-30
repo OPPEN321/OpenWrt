@@ -17,6 +17,9 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 # OpenWrt 默认的启动横幅文件
 curl -s http://127.0.0.1:8080/scripts/banner > package/base-files/files/etc/banner
 
+# 加入作者外链
+curl -s http://127.0.0.1:8080/scripts/index.htm > feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
+
 # 移除要替换的包
 rm -rf feeds/packages/net/{mosdns,msd_lite,open-app-filter,libxcrypt}
 rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-netgear}
