@@ -14,6 +14,10 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 # 修改内核版本
 # sed -i 's/6.12/6.6/' target/linux/rockchip/Makefile
 
+# 更新固件名称
+date_version=$(date +%y%m%d)
+sed -i "s/^CONFIG_VERSION_NUMBER=\"\"/CONFIG_VERSION_NUMBER=\"plus-$date_version\"/" .config
+
 # OpenWrt 默认的启动横幅文件
 curl -s http://127.0.0.1:8080/scripts/banner > package/base-files/files/etc/banner
 
