@@ -84,7 +84,7 @@ sed -i 's/ci-llvm=true/ci-llvm=false/g' feeds/packages/lang/rust/Makefile
 # 修改版本为编译日期
 date_version=$(date +"R%y.%m.%d")
 sed -i "s/DISTRIB_REVISION=.*/DISTRIB_REVISION='$date_version'/" package/lean/default-settings/files/zzz-default-settings
-sed -i "s/DISTRIB_DESCRIPTION=.*/DISTRIB_DESCRIPTION='ZeroWrt'/" package/lean/default-settings/files/zzz-default-settings
+sed -i "s/DISTRIB_DESCRIPTION=.*/DISTRIB_DESCRIPTION='ZeroWrt 标准版 @ $date_version BY OPPEN321'/" package/lean/default-settings/files/zzz-default-settings
 sed -i "s|echo 'OPENWRT_RELEASE=\".*\"' >> /usr/lib/os-release|echo 'OPENWRT_RELEASE=\"ZeroWrt 标准版 @ $date_version BY OPPEN321\"' >> /usr/lib/os-release|" package/lean/default-settings/files/zzz-default-settings
 
 # 取消主题默认设置
