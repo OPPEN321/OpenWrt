@@ -25,34 +25,11 @@ curl -s http://127.0.0.1:8080/scripts/banner > package/base-files/files/etc/bann
 curl -s http://127.0.0.1:8080/scripts/index.htm > feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
 
 # 移除要替换的包
-rm -rf feeds/packages/net/{mosdns,msd_lite,open-app-filter,libxcrypt}
+rm -rf feeds/packages/net/{mosdns,msd_lite,open-app-filter,libxcrypt,shadowsocks-libev}
 rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-netgear}
 rm -rf feeds/luci/applications/luci-app-mosdns,luci-app-netdata}
 rm -rf feeds/packages/lang/golang
 rm -rf package/libs/mbedtls
-
-# Git 参数设置
-git_clone_path() {
-    local commit_hash=$1
-    local repo=$2
-    shift 2
-    for path in "$@"; do
-        echo -e "\n📦 从 ${repo} (提交 ${commit_hash}) 克隆 ${path} ..."
-        git clone --no-checkout --filter=blob:none --sparse "$repo" temp_clone || exit 1
-        cd temp_clone || exit 1
-        git fetch origin || exit 1
-        git checkout "$commit_hash" || exit 1
-        git sparse-checkout set "$path" || exit 1
-        mkdir -p "../$(dirname "$path")"
-        cp -rf "$path" "../$path"
-        cd ..
-        rm -rf temp_clone
-        echo "✅ 已成功复制 $path"
-    done
-}
-
-# 克隆 4bb635d 提交的 mbedtls
-git_clone_path 4bb635d https://github.com/coolsnowwolf/lede package/libs/mbedtls
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
