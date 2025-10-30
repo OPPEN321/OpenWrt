@@ -28,12 +28,27 @@ rm -rf feeds/packages/lang/golang
 rm -rf package/libs/mbedtls
 
 # 替换 Mbedtls 版本为 2.28.5
-git_clone_path(){local c=$1;local r=$2;shift 2;for p in "$@";do echo -e "\n📦 从 $r (提交 $c) 克隆 $p ...";git clone --no-checkout --filter=blob:none --sparse "$r" temp_clone||exit 1;cd temp_clone||exit 1;git fetch origin||exit 1;git checkout "$c"||exit 1;git sparse-checkout set "$p"||exit 1;mkdir -p "../$(dirname "$p")";cp -rf "$p" "../$p";cd ..;rm -rf temp_clone;echo "✅ 已成功复制 $p";done;}
-git_clone_path 4bb635d https://github.com/coolsnowwolf/lede package/libs/mbedtls
+git_clone_path() {
+    local commit_hash=$1
+    local repo=$2
+    shift 2
+    for path in "$@"; do
+        echo -e "\n📦 从 ${repo} (提交 ${commit_hash}) 克隆 ${path} ..."
+        git clone --no-checkout --filter=blob:none --sparse "$repo" temp_clone || exit 1
+        cd temp_clone || exit 1
+        git fetch origin || exit 1
+        git checkout "$commit_hash" || exit 1
+        git sparse-checkout set "$path" || exit 1
+        mkdir -p "../$(dirname "$path")"
+        cp -rf "$path" "../$path"
+        cd ..
+        rm -rf temp_clone
+        echo "✅ 已成功复制 $path"
+    done
+}
 
 # 调用示例，克隆 4bb635d 提交的 mbedtls
 git_clone_path 4bb635d https://github.com/coolsnowwolf/lede package/libs/mbedtls
-
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
