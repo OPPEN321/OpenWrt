@@ -25,7 +25,7 @@ curl -s http://127.0.0.1:8080/scripts/banner > package/base-files/files/etc/bann
 curl -s http://127.0.0.1:8080/scripts/index.htm > feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
 
 # 移除要替换的包
-rm -rf feeds/packages/net/{mosdns,msd_lite,open-app-filter,libxcrypt,shadowsocks-libev}
+rm -rf feeds/packages/net/{mosdns,msd_lite,open-app-filter,libxcrypt}
 rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-netgear}
 rm -rf feeds/luci/applications/luci-app-mosdns,luci-app-netdata}
 rm -rf feeds/packages/lang/golang
