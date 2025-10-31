@@ -85,7 +85,6 @@ jobs:
     - name: Generate Variables
       run: |
         cd $OPENWRT_PATH
-        curl -s http://127.0.0.1:8080/scripts/feeds.conf.default > feeds.conf.default
         curl -s http://127.0.0.1:8080/configs/rockchip.config > .config
         make defconfig > /dev/null 2>&1
         SOURCE_REPO="$(echo $REPO_URL | awk -F '/' '{print $(NF)}')"
@@ -114,6 +113,8 @@ jobs:
       working-directory: /builder
       run: |
         cd $OPENWRT_PATH
+        curl -s http://127.0.0.1:8080/configs/rockchip.config > .config
+        curl -s http://127.0.0.1:8080/scripts/feeds.conf.default > feeds.conf.default
         bash <(curl -sS http://127.0.0.1:8080/build.sh)
 
     - name: Download DL Package
