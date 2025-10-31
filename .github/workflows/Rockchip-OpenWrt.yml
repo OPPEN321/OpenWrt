@@ -170,6 +170,26 @@ jobs:
         name: ${{ env.SOURCE_REPO }}-firmware-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}-${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE_PATH }}
 
+    - name: Delete old release
+      continue-on-error: true
+      if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE == 'true'
+      run: |
+        echo "🧹 删除旧的 Release (${{ env.FIRMWARE_TAG }})..."
+        gh release delete ${{ env.FIRMWARE_TAG }} -y || true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create new clean release
+      continue-on-error: true
+      if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE == 'true'
+      run: |
+        echo "🆕 重新创建 Release: ${{ env.FIRMWARE_TAG }}"
+        gh release create ${{ env.FIRMWARE_TAG }} \
+          --title "R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}" \
+          --notes "This release has been reset to remove old firmware before upload."
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
     - name: Upload Firmware To Release
       if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE == 'true'
       uses: ncipollo/release-action@v1.20.0
