@@ -51,6 +51,7 @@ git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFil
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebrowser luci-app-ssr-mudb-server
 git_sparse_clone openwrt-18.06 https://github.com/immortalwrt/luci applications/luci-app-eqos
+git_sparse_clone 24.10 https://github.com/Lienol/openwrt package/wwan/qmodem && mv package/qmodem package/wwan
 
 # 科学上网插件
 git clone --depth=1 -b master https://github.com/fw876/helloworld package/luci-app-ssr-plus
