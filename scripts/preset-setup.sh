@@ -29,7 +29,6 @@ rm -rf feeds/packages/net/{mosdns,msd_lite,open-app-filter,libxcrypt}
 rm -rf feeds/luci/themes/{luci-theme-argon,luci-theme-netgear}
 rm -rf feeds/luci/applications/luci-app-mosdns,luci-app-netdata}
 rm -rf feeds/packages/lang/golang
-rm -rf package/wwan
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
@@ -52,7 +51,6 @@ git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFil
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebrowser luci-app-ssr-mudb-server
 git_sparse_clone openwrt-18.06 https://github.com/immortalwrt/luci applications/luci-app-eqos
-git_sparse_clone 24.10 https://github.com/Lienol/openwrt package/wwan
 
 # 科学上网插件
 git clone --depth=1 -b master https://github.com/fw876/helloworld package/luci-app-ssr-plus
