@@ -65,6 +65,7 @@ jobs:
       uses: sbwml/actions@install-llvm
 
     - name: Clone Source Code
+      working-directory: /builder
       run: |
         df -hT $GITHUB_WORKSPACE
         git clone $REPO_URL -b $REPO_BRANCH openwrt
@@ -80,6 +81,7 @@ jobs:
         echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
 
     - name: Generate Variables
+      working-directory: /builder
       run: |
         cp $CONFIG_FILE $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
@@ -100,12 +102,14 @@ jobs:
         prefix: ${{ env.OPENWRT_PATH }}
 
     - name: Install Feeds
+      working-directory: /builder
       run: |
         cd $OPENWRT_PATH
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
     - name: Load Custom Configuration
+      working-directory: /builder
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
@@ -115,6 +119,7 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_SCRIPT
 
     - name: Download DL Package
+      working-directory: /builder
       run: |
         cd $OPENWRT_PATH
         make defconfig
@@ -123,6 +128,7 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
 
     - name: Compile Firmware
+      working-directory: /builder
       id: compile
       run: |
         cd $OPENWRT_PATH
@@ -135,6 +141,7 @@ jobs:
         echo "FILE_DATE=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
 
     - name: Check Space Usage
+      working-directory: /builder
       if: (!cancelled())
       run: df -hT
 
@@ -146,6 +153,7 @@ jobs:
         path: ${{ env.OPENWRT_PATH }}/bin
 
     - name: Organize Files
+      working-directory: /builder
       if: steps.compile.outputs.status == 'success'
       run: |
         cd $OPENWRT_PATH/bin/targets/*/*
