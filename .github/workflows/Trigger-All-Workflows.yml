@@ -7,8 +7,8 @@ on:
 
 jobs:
 
-    IPQ60XX-LibWrt:
+    IPQ60XX-OpenWrt:
       uses: ./.github/workflows/IPQ60XX-OpenWrt.yml
 
-    IPQ807X-LibWrt:
+    IPQ807X-OpenWrt:
       uses: ./.github/workflows/IPQ807X-OpenWrt.yml
