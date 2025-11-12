@@ -27,6 +27,95 @@ sed -i 's|3ec87f221e8905d4b6b8b3d207b7f7c4666c3bc8db7c1f06d4ae2e78f863b8f4|881cb
 # 修复 Rust 错误
 sed -i 's/ci-llvm=true/ci-llvm=false/g' feeds/packages/lang/rust/Makefile
 
+# Luci diagnostics.js
+sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
+
+# NTP
+sed -i 's/0.openwrt.pool.ntp.org/ntp1.aliyun.com/g' package/base-files/files/bin/config_generate
+sed -i 's/1.openwrt.pool.ntp.org/ntp2.aliyun.com/g' package/base-files/files/bin/config_generate
+sed -i 's/2.openwrt.pool.ntp.org/time1.cloud.tencent.com/g' package/base-files/files/bin/config_generate
+sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/files/bin/config_generate
+
+# TTYD
+sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+
+# luci-theme-bootstrap
+sed -i 's/font-size: 13px/font-size: 14px/g' feeds/luci/themes/luci-theme-bootstrap/htdocs/luci-static/bootstrap/cascade.css
+sed -i 's/9.75px/10.75px/g' feeds/luci/themes/luci-theme-bootstrap/htdocs/luci-static/bootstrap/cascade.css
+
+# Status page enhancement: add social and firmware links
+cat << 'EOF' >> feeds/luci/modules/luci-mod-status/ucode/template/admin_status/index.ut
+<script>
+function addLinks() {
+    var section = document.querySelector(".cbi-section");
+    if (section) {
+        // 创建表格容器
+        var table = document.createElement('div');
+        table.className = 'table';
+        
+        // 创建行
+        var row = document.createElement('div');
+        row.className = 'tr';
+        
+        // 左列：帮助与反馈
+        var leftCell = document.createElement('div');
+        leftCell.className = 'td left';
+        leftCell.style.width = '33%';
+        leftCell.textContent = '帮助与反馈';
+        
+        // 右列：三个按钮
+        var rightCell = document.createElement('div');
+        rightCell.className = 'td left';
+        
+        // 创建QQ交流群按钮
+        var qqLink = document.createElement('a');
+        qqLink.href = 'https://qm.qq.com/q/JbBVnkjzKa';
+        qqLink.target = '_blank';
+        qqLink.className = 'cbi-button';
+        qqLink.style.marginRight = '10px';
+        qqLink.textContent = 'QQ交流群';
+        
+        // 创建TG交流群按钮
+        var tgLink = document.createElement('a');
+        tgLink.href = 'https://t.me/kejizero';
+        tgLink.target = '_blank';
+        tgLink.className = 'cbi-button';
+        tgLink.style.marginRight = '10px';
+        tgLink.textContent = 'TG交流群';
+        
+        // 创建固件地址按钮
+        var firmwareLink = document.createElement('a');
+        firmwareLink.href = 'https://openwrt.kejizero.online';
+        firmwareLink.target = '_blank';
+        firmwareLink.className = 'cbi-button';
+        firmwareLink.textContent = '固件地址';
+        
+        // 组装元素
+        rightCell.appendChild(qqLink);
+        rightCell.appendChild(tgLink);
+        rightCell.appendChild(firmwareLink);
+        
+        row.appendChild(leftCell);
+        row.appendChild(rightCell);
+        table.appendChild(row);
+        section.appendChild(table);
+    } else {
+        setTimeout(addLinks, 100);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", addLinks);
+</script>
+EOF
+
+# Custom firmware version and author metadata
+sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='ZeroWrt-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
+sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By OPPEN321'/g" package/base-files/files/etc/openwrt_release
+sed -i "s|^OPENWRT_RELEASE=\".*\"|OPENWRT_RELEASE=\"ZeroWrt 标准版 @R$(date +%Y%m%d) BY OPPEN321\"|" package/base-files/files/usr/lib/os-release
+
 # 移除要替换的包
 rm -rf feeds/luci/applications/luci-app-wechatpush
 rm -rf feeds/luci/applications/luci-app-appfilter
