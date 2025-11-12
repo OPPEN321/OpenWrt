@@ -1,4 +1,4 @@
-name: Build releases
+name: IPQ60XX OpenWrt
 
 on:
   workflow_dispatch:
