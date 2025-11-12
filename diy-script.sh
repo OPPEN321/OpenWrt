@@ -28,6 +28,22 @@ curl -s $mirror/scripts/banner > package/base-files/files/etc/banner
 # 临时解决 NSS 下载错误
 sed -i 's|3ec87f221e8905d4b6b8b3d207b7f7c4666c3bc8db7c1f06d4ae2e78f863b8f4|881cbf75efafe380b5adc91bfb1f68add5e29c9274eb950bb1e815c7a3622807|g' feeds/nss_packages/firmware/nss-firmware/Makefile
 
+# TTYD
+sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
+
+# NTP
+sed -i 's/0.openwrt.pool.ntp.org/ntp1.aliyun.com/g' package/base-files/files/bin/config_generate
+sed -i 's/1.openwrt.pool.ntp.org/ntp2.aliyun.com/g' package/base-files/files/bin/config_generate
+sed -i 's/2.openwrt.pool.ntp.org/time1.cloud.tencent.com/g' package/base-files/files/bin/config_generate
+sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/files/bin/config_generate
+
+# 主题设置
+sed -i 's/font-size: 13px/font-size: 14px/g' feeds/luci/themes/luci-theme-bootstrap/htdocs/luci-static/bootstrap/cascade.css
+sed -i 's/9.75px/10.75px/g' feeds/luci/themes/luci-theme-bootstrap/htdocs/luci-static/bootstrap/cascade.css
+
 # 移除要替换的包
 rm -rf feeds/luci/applications/luci-app-wechatpush
 rm -rf feeds/luci/applications/luci-app-appfilter
@@ -50,22 +66,93 @@ function git_sparse_clone() {
 }
 
 # Go & OpenList & ariang & frp & AdGuardHome & WolPlus & Lucky & wechatpush & OpenAppFilter & 集客无线AC控制器 & 雅典娜LED控制
-git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
-git clone --depth=1 https://github.com/sbwml/luci-app-openlist2 package/openlist
-git_sparse_clone ariang https://github.com/laipeng668/packages net/ariang
-git_sparse_clone frp https://github.com/laipeng668/packages net/frp
+git clone --depth=1 https://$github/sbwml/packages_lang_golang feeds/packages/lang/golang
+git clone --depth=1 https://$github/sbwml/luci-app-openlist2 package/openlist
+git_sparse_clone ariang https://$github/laipeng668/packages net/ariang
+git_sparse_clone frp https://$github/laipeng668/packages net/frp
 mv -f package/frp feeds/packages/net/frp
-git_sparse_clone frp https://github.com/laipeng668/luci applications/luci-app-frpc applications/luci-app-frps
+git_sparse_clone frp https://$github/laipeng668/luci applications/luci-app-frpc applications/luci-app-frps
 mv -f package/luci-app-frpc feeds/luci/applications/luci-app-frpc
 mv -f package/luci-app-frps feeds/luci/applications/luci-app-frps
-git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
-git_sparse_clone main https://github.com/VIKINGYFY/packages luci-app-wolplus
-git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
-git clone --depth=1 https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
-git clone --depth=1 https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
-git clone --depth=1 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
-git clone --depth=1 https://github.com/NONGFAH/luci-app-athena-led package/luci-app-athena-led
+git_sparse_clone master https://$github/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
+git_sparse_clone main https://$github/VIKINGYFY/packages luci-app-wolplus
+git clone --depth=1 https://$github/gdy666/luci-app-lucky package/luci-app-lucky
+git clone --depth=1 https://$github/tty228/luci-app-wechatpush package/luci-app-wechatpush
+git clone --depth=1 https://$github/destan19/OpenAppFilter.git package/OpenAppFilter
+git clone --depth=1 https://$github/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
+git clone --depth=1 https://$github/NONGFAH/luci-app-athena-led package/luci-app-athena-led
 chmod +x package/luci-app-athena-led/root/etc/init.d/athena_led package/luci-app-athena-led/root/usr/sbin/athena-led
+
+### 个性化设置 ###
+cat << 'EOF' >> feeds/luci/modules/luci-mod-status/ucode/template/admin_status/index.ut
+<script>
+function addLinks() {
+    var section = document.querySelector(".cbi-section");
+    if (section) {
+        // 创建表格容器
+        var table = document.createElement('div');
+        table.className = 'table';
+        
+        // 创建行
+        var row = document.createElement('div');
+        row.className = 'tr';
+        
+        // 左列：帮助与反馈
+        var leftCell = document.createElement('div');
+        leftCell.className = 'td left';
+        leftCell.style.width = '33%';
+        leftCell.textContent = '帮助与反馈';
+        
+        // 右列：三个按钮
+        var rightCell = document.createElement('div');
+        rightCell.className = 'td left';
+        
+        // 创建QQ交流群按钮
+        var qqLink = document.createElement('a');
+        qqLink.href = 'https://qm.qq.com/q/JbBVnkjzKa';
+        qqLink.target = '_blank';
+        qqLink.className = 'cbi-button';
+        qqLink.style.marginRight = '10px';
+        qqLink.textContent = 'QQ交流群';
+        
+        // 创建TG交流群按钮
+        var tgLink = document.createElement('a');
+        tgLink.href = 'https://t.me/kejizero';
+        tgLink.target = '_blank';
+        tgLink.className = 'cbi-button';
+        tgLink.style.marginRight = '10px';
+        tgLink.textContent = 'TG交流群';
+        
+        // 创建固件地址按钮
+        var firmwareLink = document.createElement('a');
+        firmwareLink.href = 'https://openwrt.kejizero.online';
+        firmwareLink.target = '_blank';
+        firmwareLink.className = 'cbi-button';
+        firmwareLink.textContent = '固件地址';
+        
+        // 组装元素
+        rightCell.appendChild(qqLink);
+        rightCell.appendChild(tgLink);
+        rightCell.appendChild(firmwareLink);
+        
+        row.appendChild(leftCell);
+        row.appendChild(rightCell);
+        table.appendChild(row);
+        section.appendChild(table);
+    } else {
+        setTimeout(addLinks, 100);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", addLinks);
+</script>
+EOF
+
+# 版本号设置
+sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='ZeroWrt-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
+sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By OPPEN321'/g" package/base-files/files/etc/openwrt_release
+sed -i "s|^OPENWRT_RELEASE=\".*\"|OPENWRT_RELEASE=\"ZeroWrt 标准版 @R$(date +%Y%m%d) BY OPPEN321\"|" package/base-files/files/usr/lib/os-release
+
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
