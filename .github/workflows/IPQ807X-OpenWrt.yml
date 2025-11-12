@@ -1,4 +1,4 @@
-name: IPQ807X OpenWrt
+name: IPQ807X-OpenWrt
 
 on:
   workflow_dispatch:
