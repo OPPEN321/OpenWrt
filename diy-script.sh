@@ -121,6 +121,7 @@ rm -rf feeds/luci/applications/luci-app-wechatpush
 rm -rf feeds/luci/applications/luci-app-appfilter
 rm -rf feeds/luci/applications/luci-app-frpc
 rm -rf feeds/luci/applications/luci-app-frps
+rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/packages/net/open-app-filter
 rm -rf feeds/packages/net/adguardhome
 rm -rf feeds/packages/net/ariang
@@ -137,7 +138,7 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 
-# Go & OpenList & ariang & frp & AdGuardHome & WolPlus & Lucky & wechatpush & OpenAppFilter & 集客无线AC控制器 & 雅典娜LED控制
+# Go & OpenList & ariang & frp & AdGuardHome & WolPlus & Lucky & wechatpush & OpenAppFilter & 集客无线AC控制器 & 雅典娜LED控制 & Argon 主题
 git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 git clone --depth=1 https://github.com/sbwml/luci-app-openlist2 package/openlist
 git_sparse_clone ariang https://github.com/laipeng668/packages net/ariang
@@ -154,6 +155,7 @@ git clone --depth=1 https://github.com/destan19/OpenAppFilter.git package/OpenAp
 git clone --depth=1 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 git clone --depth=1 https://github.com/NONGFAH/luci-app-athena-led package/luci-app-athena-led
 chmod +x package/luci-app-athena-led/root/etc/init.d/athena_led package/luci-app-athena-led/root/usr/sbin/athena-led
+git clone --depth=1 https://github.com/QuickWrt/luci-theme-argon package/luci-theme-argon
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
