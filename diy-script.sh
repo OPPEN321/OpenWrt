@@ -1,26 +1,5 @@
 #!/bin/bash
 
-# 修改默认IP
-sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
-
-# 修改主机名
-sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/files/bin/config_generate
-
-# 修改 WIFI 名称
-sed -i "s/ssid='.*'/ssid='ZeroWrt'/g" package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
-
-# 修改 WIFI 密码
-sed -i "s/key='.*'/key='12345678'/g" package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
-
-# 修改 WIFI 加密
-sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
-
-# 修改 WIFI 地区
-sed -i "s/country='.*'/country='CN'/g" package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
-
-# OpenWrt 默认的启动横幅文件
-cp -f $GITHUB_WORKSPACE/scripts/banner package/base-files/files/etc/banner
-
 # 临时解决 NSS 下载错误
 sed -i 's|3ec87f221e8905d4b6b8b3d207b7f7c4666c3bc8db7c1f06d4ae2e78f863b8f4|881cbf75efafe380b5adc91bfb1f68add5e29c9274eb950bb1e815c7a3622807|g' feeds/nss_packages/firmware/nss-firmware/Makefile
 
