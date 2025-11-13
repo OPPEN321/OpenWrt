@@ -7,8 +7,8 @@ on:
 #    - cron: 0 19 * * *
 
 env:
-  REPO_URL: https://github.com/LiBwrt/openwrt-6.x
-  REPO_BRANCH: k6.12-nss
+  REPO_URL: https://github.com/QuickWrt/immortalwrt
+  REPO_BRANCH: master
   CONFIG_FILE: configs/ipq807x.config
   DIY_SCRIPT: diy-script.sh
   CACHE_TOOLCHAIN: true
