@@ -29,7 +29,6 @@
 | **💻 平台架构** | qualcommax-ipq807x / qualcommax-ipq60xx |
 | **⚽ 固件源码** | https://github.com/QuickWrt/immortalwrt |
 | **💝 源码分支** | master |
-| **🚀 内核版本** | 6.12.57 · a589e2a9ab005ce3d38a03153b84e0dc |
 | **🌐 默认管理地址** | http://10.0.0.1 |
 | **🔑 默认密码** | `password` |
 | **☁ 编译方式** | GitHub Actions 云端自动构建 |
@@ -37,44 +36,46 @@
 
 ---
 
-## 🧩 内置插件（精美网格布局）
+## 🧩 内置插件
 
 ### 🔐 网络 & 安全
-| 插件 | 插件 |
-|------|------|
-| luci-app-homeproxy | luci-app-oaf |
-| luci-app-sqm | luci-proto-wireguard |
-| luci-app-arpbind | luci-app-wolplus |
+| 插件 | 状态 | 插件 | 状态 |
+|------|------|------|------|
+| luci-app-homeproxy | ✅ | luci-app-oaf | ✅ |
+| luci-app-sqm | ✅ | luci-proto-wireguard | ✅ |
+| luci-app-arpbind | ✅ | luci-app-wolplus | ✅ |
 
 ### ⚙ 系统管理
-| 插件 | 插件 |
-|------|------|
-| luci-app-cpufreq | luci-app-autoreboot |
-| luci-app-watchcat | luci-app-ttyd |
-| luci-app-uhttpd | luci-app-3cat |
+| 插件 | 状态 | 插件 | 状态 |
+|------|------|------|------|
+| luci-app-cpufreq | ✅ | luci-app-autoreboot | ✅ |
+| luci-app-watchcat | ✅ | luci-app-ttyd | ✅ |
+| luci-app-uhttpd | ✅ | luci-app-3cat | ✅ |
 
 ### 📡 服务 & 通知
-| 插件 | 插件 |
-|------|------|
-| luci-app-ddns | luci-app-wechatpush |
+| 插件 | 状态 | 插件 | 状态 |
+|------|------|------|------|
+| luci-app-ddns | ✅ | luci-app-wechatpush | ✅ |
 
 ### 📦 存储 / 外设支持
-| 插件 | 插件 |
-|------|------|
-| luci-app-samba4 | luci-app-diskman |
-| luci-app-usb-printer | luci-app-wolplus |
+| 插件 | 状态 | 插件 | 状态 |
+|------|------|------|------|
+| luci-app-samba4 | ✅ | luci-app-diskman | ✅ |
+| luci-app-usb-printer | ✅ | luci-app-wolplus | ✅ |
 
 ### 🎨 UI 美化
-| 插件 |
-|------|
-| luci-app-argon-config |
+| 插件 | 状态 |
+|------|------|
+| luci-app-argon-config | ✅ |
 
 ### 🛡️ 广告过滤
-| 插件 |
-|------|
-| luci-app-adguardhome |
+| 插件 | 状态 |
+|------|------|
+| luci-app-adguardhome | ✅ |
 
----
+✅ 可用  
+❌ 不可用  
+⏳ 计划中
 
 ## 📱 支持设备
 
