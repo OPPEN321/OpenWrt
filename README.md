@@ -36,42 +36,20 @@
 
 ---
 
-## 🧩 内置插件
+## 🧩 内置插件 & 功能状态
 
-### 🔐 网络 & 安全
 | 插件 | 状态 | 插件 | 状态 |
-|------|------|------|------|
+|-------------|------|-------------|------|
 | luci-app-homeproxy | ✅ | luci-app-oaf | ✅ |
 | luci-app-sqm | ✅ | luci-proto-wireguard | ✅ |
 | luci-app-arpbind | ✅ | luci-app-wolplus | ✅ |
-
-### ⚙ 系统管理
-| 插件 | 状态 | 插件 | 状态 |
-|------|------|------|------|
 | luci-app-cpufreq | ✅ | luci-app-autoreboot | ✅ |
 | luci-app-watchcat | ✅ | luci-app-ttyd | ✅ |
 | luci-app-uhttpd | ✅ | luci-app-3cat | ✅ |
-
-### 📡 服务 & 通知
-| 插件 | 状态 | 插件 | 状态 |
-|------|------|------|------|
 | luci-app-ddns | ✅ | luci-app-wechatpush | ✅ |
-
-### 📦 存储 / 外设支持
-| 插件 | 状态 | 插件 | 状态 |
-|------|------|------|------|
 | luci-app-samba4 | ✅ | luci-app-diskman | ✅ |
 | luci-app-usb-printer | ✅ | luci-app-wolplus | ✅ |
-
-### 🎨 UI 美化
-| 插件 | 状态 |
-|------|------|
-| luci-app-argon-config | ✅ |
-
-### 🛡️ 广告过滤
-| 插件 | 状态 |
-|------|------|
-| luci-app-adguardhome | ✅ |
+| luci-app-argon-config | ✅ | luci-app-adguardhome | ✅ |
 
 ✅ 可用  
 ❌ 不可用  
