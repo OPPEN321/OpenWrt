@@ -6,6 +6,9 @@ sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 # 修改主机名
 sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/files/bin/config_generate
 
+# 修改固件名称
+sed -i 's/LibWrt/ZeroWrt/g' include/version.mk
+
 # 修改 WIFI 名称
 sed -i "s/ssid='.*'/ssid='ZeroWrt'/g" package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
 
