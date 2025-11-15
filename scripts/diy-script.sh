@@ -124,13 +124,9 @@ sed -i "s|^OPENWRT_RELEASE=\".*\"|OPENWRT_RELEASE=\"ZeroWrt 标准版 @R$(date +
 
 # 移除要替换的包
 rm -rf feeds/luci/applications/luci-app-appfilter
-rm -rf feeds/luci/applications/luci-app-frpc
-rm -rf feeds/luci/applications/luci-app-frps
 rm -rf feeds/luci/applications/luci-app-argon-config
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/packages/net/open-app-filter
-rm -rf feeds/packages/net/ariang
-rm -rf feeds/packages/net/frp
 rm -rf feeds/packages/lang/golang
 
 # Git稀疏克隆，只克隆指定目录到本地
@@ -143,25 +139,42 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 
-# Go & OpenList & ariang & frp & AdGuardHome & WolPlus & Lucky & wechatpush & OpenAppFilter & 集客无线AC控制器 & 雅典娜LED控制 & Argon 主题
+# Go 1.25
 git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+
+# OpenList 
 git clone --depth=1 https://github.com/sbwml/luci-app-openlist2 package/openlist
-git_sparse_clone ariang https://github.com/laipeng668/packages net/ariang
-git_sparse_clone frp https://github.com/laipeng668/packages net/frp
-mv -f package/frp feeds/packages/net/frp
-git_sparse_clone frp https://github.com/laipeng668/luci applications/luci-app-frpc applications/luci-app-frps
-mv -f package/luci-app-frpc feeds/luci/applications/luci-app-frpc
-mv -f package/luci-app-frps feeds/luci/applications/luci-app-frps
+
+# Mosdns
+git clone --depth=1 -b v5 https://github.com/sbwml/luci-app-mosdns package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+
+# Adguardhome
 git clone --depth=1 https://github.com/sirpdboy/luci-app-adguardhome package/luci-app-adguardhome
 sed -i "s/\(option enabled '\)1'/\10'/" package/luci-app-adguardhome/luci-app-adguardhome/root/etc/config/AdGuardHome
-git_sparse_clone main https://github.com/VIKINGYFY/packages luci-app-wolplus
+
+# 挂载插件
+git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp.git package/luci-app-partexp
+
+# 一键唤醒
+git_sparse_clone main https://github.com/sbwml/openwrt_pkgs luci-app-wolplus
+
+# Lucky
 git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
+
+# OpenAppFilter
 git clone --depth=1 https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
+
+# 集客无线AC控制器
 git clone --depth=1 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
+
+# 雅典娜LED控制
 git clone --depth=1 https://github.com/NONGFAH/luci-app-athena-led package/luci-app-athena-led
 chmod +x package/luci-app-athena-led/root/etc/init.d/athena_led package/luci-app-athena-led/root/usr/sbin/athena-led
 sed -i "/^config athena_led/,/^config / s/^\(\s*option value\s*'\).*\('.*\)/\1ZWRT\2/" package/luci-app-athena-led/root/etc/config/athena_led
 sed -i "s/option option 'date timeBlink'/option option 'date timeBlink temp string'/" package/luci-app-athena-led/root/etc/config/athena_led
+
+# Argon 主题
 git clone --depth=1 https://github.com/QuickWrt/luci-theme-argon package/luci-theme-argon
 
 ./scripts/feeds update -a
