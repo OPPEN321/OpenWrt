@@ -33,6 +33,7 @@ sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/l
 # 移除在线值守更新
 sed -i "/luci-app-attendedsysupgrade/d" feeds/luci/collections/luci/Makefile
 sed -i "s/^\(\s*+luci-app-package-manager\) \\\\/\1/" feeds/luci/collections/luci/Makefile
+sed -i "/+luci-app-attendedsysupgrade \\\/d" feeds/luci/collections/luci-nginx/Makefile
 
 # NTP
 sed -i 's/0.openwrt.pool.ntp.org/ntp1.aliyun.com/g' package/base-files/files/bin/config_generate
