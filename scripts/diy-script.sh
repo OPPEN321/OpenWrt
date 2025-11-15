@@ -23,7 +23,7 @@ sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" package/network/config/wifi-
 sed -i "s/country='.*'/country='CN'/g" package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
 
 # OpenWrt 默认的启动横幅文件
-curl -s $mirror/scripts/banner > package/base-files/files/etc/banner
+cp -f $GITHUB_WORKSPACE/files/banner package/base-files/files/etc/banner
 
 # 修复 Rust 错误
 sed -i 's/ci-llvm=true/ci-llvm=false/g' feeds/packages/lang/rust/Makefile
