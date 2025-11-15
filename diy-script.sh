@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#修改 WIFI 地区
-sed -i "s/country='.*'/country='CN'/g" package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
-
 # 修复 Rust 错误
 sed -i 's/ci-llvm=true/ci-llvm=false/g' feeds/packages/lang/rust/Makefile
 
