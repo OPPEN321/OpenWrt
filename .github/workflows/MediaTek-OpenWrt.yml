@@ -10,7 +10,7 @@ env:
   REPO_URL: https://github.com/OPPEN321/immortalwrt-24.10
   REPO_BRANCH: openwrt-24.10
   CONFIG_FILE: configs/mediatek.config
-  DIY_SCRIPT: diy-script.sh
+  DIY_SCRIPT: scripts/diy-script.sh
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
