@@ -27,8 +27,12 @@ curl -s $mirror/scripts/banner > package/base-files/files/etc/banner
 # 修复 Rust 错误
 sed -i 's/ci-llvm=true/ci-llvm=false/g' feeds/packages/lang/rust/Makefile
 
-# Luci diagnostics.js
+# 网络诊断
 sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
+
+# 移除在线值守更新
+sed -i "/luci-app-attendedsysupgrade/d" feeds/luci/collections/luci/Makefile
+sed -i "s/^\(\s*+luci-app-package-manager\) \\\\/\1/" feeds/luci/collections/luci/Makefile
 
 # NTP
 sed -i 's/0.openwrt.pool.ntp.org/ntp1.aliyun.com/g' package/base-files/files/bin/config_generate
