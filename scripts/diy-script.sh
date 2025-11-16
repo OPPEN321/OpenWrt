@@ -7,8 +7,8 @@ sed -i '/lan) ipad=${ipaddr:-/s/"[^"]*"/"10.0.0.1"/' package/base-files/files/bi
 sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/files/bin/config_generate
 
 # 修改固件名称
-sed -i 's/\(VERSION_DIST:.*,\)[^)]*)/\1ZeroWrt)/' include/version.mk
-sed -i 's/\(VERSION_MANUFACTURER:.*,\)[^)]*)/\1ZeroWrt)/' include/version.mk
+sed -i '/^VERSION_DIST:=$(if /c\VERSION_DIST:=$(if $(VERSION_DIST),$(VERSION_DIST),ZeroWrt)' include/version.mk
+sed -i '/^VERSION_MANUFACTURER:=$(if /c\VERSION_MANUFACTURER:=$(if $(VERSION_MANUFACTURER),$(VERSION_MANUFACTURER),ZeroWrt)' include/version.mk
 
 # 修改 WIFI 名称
 sed -i "s/ssid='.*'/ssid='ZeroWrt'/g" package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
