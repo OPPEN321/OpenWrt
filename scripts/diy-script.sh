@@ -22,6 +22,10 @@ sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" package/network/config/wifi-
 # 修改 WIFI 地区
 sed -i "s/country='.*'/country='CN'/g" package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
 
+# 设置默认密码
+default_password=$(openssl passwd -5 password)
+sed -i "s|^root:[^:]*:|root:${default_password}:|" package/base-files/files/etc/shadow
+
 # OpenWrt 默认的启动横幅文件
 cp -f $GITHUB_WORKSPACE/scripts/banner package/base-files/files/etc/banner
 
