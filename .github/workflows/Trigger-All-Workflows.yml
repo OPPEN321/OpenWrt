@@ -12,8 +12,8 @@ jobs:
   IPQ807X-OpenWrt:
     uses: ./.github/workflows/IPQ807X-OpenWrt.yml
 
-#  MediaTek-OpenWrt:
-#    uses: ./.github/workflows/MediaTek-OpenWrt.yml
+  MediaTek-OpenWrt:
+    uses: ./.github/workflows/MediaTek-OpenWrt.yml
 
   Delete-Old-Workflows:
     uses: ./.github/workflows/Delete-Old-Workflows.yml
