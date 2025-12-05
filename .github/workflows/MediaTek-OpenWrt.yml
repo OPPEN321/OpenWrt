@@ -7,7 +7,7 @@ on:
 #    - cron: 0 19 * * *
 
 env:
-  REPO_URL: https://github.com/OPPEN321/immortalwrt-24.10
+  REPO_URL: https://github.com/QuickWrt/immortalwrt-mt798x
   REPO_BRANCH: openwrt-24.10
   CONFIG_FILE: configs/mediatek.config
   DIY_SCRIPT: scripts/diy-script.sh
