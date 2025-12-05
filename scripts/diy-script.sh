@@ -35,6 +35,17 @@ sed -i 's/ci-llvm=true/ci-llvm=false/g' feeds/packages/lang/rust/Makefile
 # 网络诊断
 sed -i "s/openwrt.org/www.qq.com/g" feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/diagnostics.js
 
+# 必要的补丁
+pushd feeds/luci
+    curl -s https://openwrt.kejizero.xyz/openwrt/patch/luci/0001-luci-mod-system-add-modal-overlay-dialog-to-reboot.patch | patch -p1
+    curl -s https://openwrt.kejizero.xyz/openwrt/patch/luci/0002-luci-mod-status-displays-actual-process-memory-usage.patch | patch -p1
+    curl -s https://openwrt.kejizero.xyz/openwrt/patch/luci/0003-luci-mod-status-storage-index-applicable-only-to-val.patch | patch -p1
+    curl -s https://openwrt.kejizero.xyz/openwrt/patch/luci/0004-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
+    curl -s https://openwrt.kejizero.xyz/openwrt/patch/luci/0005-luci-mod-system-add-refresh-interval-setting.patch | patch -p1
+    curl -s https://openwrt.kejizero.xyz/openwrt/patch/luci/0006-luci-mod-system-mounts-add-docker-directory-mount-po.patch | patch -p1
+    curl -s https://openwrt.kejizero.xyz/openwrt/patch/luci/0007-luci-mod-system-add-ucitrack-luci-mod-system-zram.js.patch | patch -p1
+popd
+
 # 移除在线值守更新
 sed -i "/luci-app-attendedsysupgrade/d" feeds/luci/collections/luci/Makefile
 sed -i "s/^\(\s*+luci-app-package-manager\) \\\\/\1/" feeds/luci/collections/luci/Makefile
